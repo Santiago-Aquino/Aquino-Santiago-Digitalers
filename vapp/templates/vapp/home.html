@@ -1,0 +1,26 @@
+{% extends 'vapp/base.html' %}
+{%load static%}
+
+{% block title %}
+    Home - ViuVehicle
+{% endblock title %}
+
+
+{% block content %}
+    <main>
+        <div class="container-fluid vh-100 m-4">
+            <div class="row">
+                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                    {% if request.user.is_authenticated %}
+                    <h1 class="mb-5 bg-success text-white p-3 rounded-2 shadow-lg">Bienvenido/a {{request.user.username}} </h1>
+                    {% else %}
+                    <h1 class="mb-5 bg-success text-white p-3 rounded-2 shadow-lg">Bienvenido/a Usuario</h1>
+                    {% endif %}
+                    <p class="fs-4 m-4 text-white">¡Bienvenido a nuestra página web <span class="fw-bold text-success">"ViuVehicle"</span> dedicada a los amantes de la velocidad y la libertad sobre ruedas! En nuestro sitio, encontrarás una amplia selección de automóviles y motocicletas de las marcas más reconocidas y prestigiosas del mercado. Explora nuestra colección de vehículos, desde coches deportivos de alto rendimiento hasta motocicletas elegantes y potentes. Además, te ofrecemos información detallada y comparativas para ayudarte a tomar la decisión más acertada al elegir tu próximo medio de transporte. Nuestro objetivo es proporcionarte todo lo que necesitas para satisfacer tu pasión por la conducción, ya sea en cuatro ruedas o dos. <span class="text-success fw-bold">¡Descubre la emoción de la carretera con nosotros!</span></p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
+    
+    

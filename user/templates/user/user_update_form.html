@@ -1,0 +1,56 @@
+{% extends 'user/base.html' %}
+{%load static%}
+
+{% block title %}
+    Perfil - ViuVehicle
+{% endblock title %}
+
+
+{% block content %}
+    <main>
+        <h2 class="text-white mt-5 text-center">Perfil</h2>
+        <div class="contain-fluid">
+            {% if 'ok' in request.GET %}
+            <div class="row m-5 g-3">
+                <div class="alert alert-success col-11" role="alert">
+                    Se actualizo correctamente, haga click <a href="{% url 'home' %}" class="alert-link">Aqui </a>si quiere volver al menu.
+                  </div>
+            </div>
+        {% endif %}  
+            <form class="row g-3 m-5" enctype='multipart/form-data' method="POST">
+                {% csrf_token %}
+                <div class="col-11">
+                    <label for="id_username" class="form-label text-white">Nombre de usuario</label>
+                    <input type="text" id="id_username" name="username" value="{{form.username.value}}" maxlength=150 required="" class="form-control"">
+                </div>
+                <div class="col-11">
+                    <label for="id_first-name" class="form-label text-white">Nombre</label>
+                    <input type="text" id="id_first-name" name="first_name" class="form-control" maxlength="150" value="{{form.first_name.value}}">
+                </div>
+                <div class="col-11">
+                    <label for="id_last-name" class="form-label text-white">Apellido</label>
+                    <input type="text" id="id_last-name" name="last_name" class="form-control" maxlength="150" value="{{form.last_name.value}}">
+                </div>
+                <div class="col-11">
+                    <label for="id_email" class="form-label text-white">Email</label>
+                    <input type="email" id="id_email" name="email" class="form-control" maxlength="254" value="{{form.email.value}}">
+                </div>
+                <div class="col-11">
+                    {% if form.image %}
+                    <label for="id_image" class="form-label text-white">Imagen Nueva</label>
+                    <a href="http://localhost:8000/media/{{form.image.value}}" class="text-success ms-3 fw-bold">{{form.image.value}}</a>
+                    <input type="checkbox" id="image-clear_id" class="ms-2" name="image-clear">
+                    <label for="image-clear_id" class="text-white">Eliminar imagen actual</label>
+                    <input type="file" id="id_image" name="image" class="form-control" accept="image/">
+                    {% else %}
+                    <label for="id_image" class="form-label text-white">Imagen</label>
+                    <input type="file" id="id_image" name="image" class="form-control" accept="image/">
+                    {% endif %}
+                </div>
+                <div class="col-12">
+                  <input type="submit" class="btn btn-success" value="Actualizar">
+                </div>
+              </form>
+        </div>
+    </main>
+{% endblock content %}

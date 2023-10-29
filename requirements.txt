@@ -1,0 +1,21 @@
+Los modulos que hay que instalar se encuentran en el README.md
+De todas formas dejo los modulos que tengo en mi entorno.
+--------------------------------------------------------------
+asgiref==3.7.2
+automium==0.2.6
+automium-web==0.1.1
+autopep8==2.0.4
+blinker==1.6.2
+click==8.1.7
+Django==4.2.5
+django-ckeditor==6.7.0
+django-js-asset==2.1.0
+Flask==3.0.0
+itsdangerous==2.1.2
+Jinja2==3.1.2
+legacy==0.1.6
+MarkupSafe==2.1.3
+Pillow==10.1.0
+pycodestyle==2.11.0
+sqlparse==0.4.4
+Werkzeug==3.0.0

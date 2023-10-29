@@ -1,0 +1,22 @@
+{% extends 'vapp/base.html' %}
+{%load static%}
+
+{% block title %}
+    Eliminar Comentario - ViuVehicle
+{% endblock title %}
+
+
+{% block content %}
+<main>
+    <div class="contain-fluid">
+        <form class="row g-3 m-5" enctype='multipart/form-data' method="POST">
+            {% csrf_token %}
+            <div class="col-12">
+                <h2 class="text-white">Estas seguro/a de que quieres eliminar el comentario <span class="text-success fw-bold">"{{object}}"</span>?</h2>
+              <input type="submit" class="btn btn-danger mt-2" value="Eliminar">
+            </div>
+          </form>
+    </div>
+</main>
+{% endblock content %}
+    

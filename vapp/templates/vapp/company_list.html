@@ -1,0 +1,90 @@
+{% extends 'vapp/base.html' %}
+{%load static%}
+
+{% block title %}
+  Compañías - ViuVehicle
+{% endblock title %}
+
+
+{% block nav %}
+<form class="d-flex me-3" role="search">
+  {% csrf_token %}
+  <input class="form-control me-2" type="search" placeholder="Buscar por nombre" aria-label="Search" id="input-company">
+  <button class="btn btn-outline-success" type="submit" id="button-company">Buscar</button>
+</form>
+
+{% endblock nav %}
+
+{% block content %}
+{% if request.user.is_staff %}
+
+<nav class="navbar navbar-expand-lg bg-transparent">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item bg-success rounded-2">
+          <a class="nav-link active text-white" aria-current="page" href="{% url 'company-create' %}">Crear compañía</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endif %}
+    <main>
+      {% if companies %}
+      <div class="container-fluid">
+        <h1 class="m-2 mt-3 text-alig-center text-white">Lista de compañías</h1>
+        <div class="row">
+          <div class="col-12 d-flex flex-wrap">    
+      {% for company in companies  %}
+        <div class="card m-2 mt-5 bg-transparent" style="width: 18rem;">
+          <img src="{% static 'vapp/empresa2.jpg' %}" alt="Imagen general de una empresa animada">
+            <div class="card-body">
+              <h5 class="card-title text-white fw-bold">{{company.name}}</h5>     
+            {% if request.user.is_staff %}
+              <a href="{% url 'company-update' company.id %}" class="btn btn-success">Editar</a>
+              <a href="{% url 'company-delete' company.id %}" class="btn btn-danger">Eliminar</a>
+            {% endif %}
+        </div>
+          </div>
+        {% endfor %}
+          </div>
+            </div>
+            </div>
+        {% else %}
+        {% if company_list %}
+        <div class="container-fluid">
+          <h1 class="m-2 mt-3 text-alig-center text-white">Lista de compañías</h1>
+          <div class="row">
+            <div class="col-12 d-flex flex-wrap">    
+        {% for company in company_list  %}
+        <div class="card m-2 mt-5 bg-transparent" style="width: 18rem;">
+          <img src="{% static 'vapp/empresa2.jpg' %}" alt="Imagen general de una empresa animada">
+            <div class="card-body">
+              <h5 class="card-title text-white fw-bold">{{company.name}}</h5>     
+              {% if request.user.is_staff %}
+              <a href="{% url 'company-update' company.id %}" class="btn btn-success">Editar</a>
+              <a href="{% url 'company-delete' company.id %}" class="btn btn-danger">Eliminar</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% else %}
+        <main class="d-flex justify-content-center align-items-center mt-5">
+          <div class="card shadow" style="width: 35rem;">
+            <img src="{% static 'vapp/no-encontrado.jpg' %}" class="card-img-top" alt="Imagen de que no se encontraron los datos">
+            <div class="card-body">
+              <h3 class="card-text">No hay datos para mostrar :(</h3>
+            </div>
+          </div>
+        </main>
+    {% endif %}
+    {% endif %}
+    </main>
+{% endblock content %}

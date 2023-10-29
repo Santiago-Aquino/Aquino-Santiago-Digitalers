@@ -1,0 +1,37 @@
+{% extends 'vapp/base.html' %}
+{%load static%}
+
+{% block title %}
+    Sobre Mi - ViuVehicle
+{% endblock title %}
+
+
+{% block content %}
+<main>
+    <div class="container-fluid vh-100 m-4">
+        <div class="row">
+            <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                <h1 class="mb-5 bg-success text-white p-3 rounded-2 shadow-lg">Sobre mi</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <p class="fs-4 m-4 text-white p-2">¡Hola! Voy a contarte un poco sobre mí. Mi nombre es <span class="text-success fw-bold">Santiago Aquino </span>y tengo 21 años. Me apasiona la tecnología, en particular, el campo del desarrollo de software. He estado estudiando durante un tiempo, sumergiéndome en HTML, CSS, Javascript, Python y otras tecnologías. He trabajado tanto de forma individual como en grupos colaborativos para crear proyectos de diversos tipos. Me encantaría conseguir un empleo en el futuro como desarrollador de software, ya que este campo me apasiona enormemente y dedicarme a esto sería un verdadero sueño.</p>
+            </div>
+            <div class="col-5">
+                <p class="fs-2 m-4 p-2 text-success fw-bold text-decoration-underline">Mis Links:</p>
+                <ul>
+                    <li class="fs-4 m-4 p-2 text-white">
+                        <a href="https://github.com/Santiago-Aquino" target="_blank" class="bg-success text-white p-2 rounded-4 fs-2 shadow-lg"><i class="fa-brands fa-github"></i></a>
+                    </li>
+                    <li class="fs-4 m-4 p-2 text-white">
+                        <a href="https://www.linkedin.com/in/santiagoaquino-desarrollador/" target="_blank" class="bg-success text-white p-2 rounded-4 fs-2 shadow-lg"><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
+    
+    

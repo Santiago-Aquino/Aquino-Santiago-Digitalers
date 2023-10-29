@@ -1,0 +1,106 @@
+{% extends 'vapp/base.html' %}
+{%load static%}
+
+{% block title %}
+    Autos - ViuVehicle
+{% endblock title %}
+
+
+{% block nav %}
+<form class="d-flex me-3" role="search">
+  {% csrf_token %}
+  <input class="form-control me-2" type="search" placeholder="Buscar por nombre" aria-label="Search" id="input-car">
+  <button class="btn btn-outline-success" type="submit" id="button-car">Buscar</button>
+</form>
+
+{% endblock nav %}
+  
+
+{% block content %}
+{% if request.user.is_staff %}
+
+<nav class="navbar navbar-expand-lg bg-transparent">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active text-white bg-success rounded-2 shadow-sm" aria-current="page" href="{% url 'car-create' %}">Crear automovil</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endif %}
+    <main>
+      
+      {% if cars %}
+      <h1 class="m-2 text-white mb-5 mt-4">Lista de automovil por nombre</h1>
+      {% for car in cars  %}
+      <div class="card mb-3 bg-transparent shadow m-3" style="max-width: 1100px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            {% if car.image %}
+            <img src="{{car.image.url}}" class="card-img-top" alt="Imagen de una moto">
+            {% else %}
+            <img src="{% static 'vapp/autos.jpg' %}" class="card-img-top" alt="Imagen de una moto">
+            {% endif %}
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title text-white fw-bold">{{car.name}}</h5>
+              <p class="card-text text-success"><small class="text-body-success">{{car.company}}</small></p>
+              <p class="card-text text-white"><small class="text-body-white">{{car.description}}</small></p>  
+              {% if request.user.is_staff %}
+              <a href="{% url 'car-update' car.id %}" class="btn btn-success">Editar</a>
+              <a href="{% url 'car-delete' car.id %}" class="btn btn-danger">Eliminar</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+        {% else %}
+        {% if car_list %}
+        <h1 class="m-2 text-white mb-5 mt-4">Lista de automoviles</h1>
+        
+        {% for car in car_list  %}
+          <div class="card mb-3 bg-transparent shadow m-3" style="max-width: 1100px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                {% if car.image %}
+                <img src="{{car.image.url}}" class="card-img-top" alt="Imagen de una moto">
+                {% else %}
+                <img src="{% static 'vapp/autos.jpg' %}" class="card-img-top" alt="Imagen de una moto">
+                {% endif %}
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title text-white fw-bold">{{car.name}}</h5>
+                  <p class="card-text text-success"><small class="text-body-success">{{car.company}}</small></p>
+                  <p class="card-text text-white"><small class="text-body-white">{{car.description}}</small></p>  
+                  {% if request.user.is_staff %}
+                  <a href="{% url 'car-update' car.id %}" class="btn btn-success">Editar</a>
+                  <a href="{% url 'car-delete' car.id %}" class="btn btn-danger">Eliminar</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        {% else %}
+        <main class="d-flex justify-content-center align-items-center mt-5">
+          <div class="card shadow" style="width: 35rem;">
+            <img src="{% static 'vapp/no-encontrado.jpg' %}" class="card-img-top" alt="Imagen de que no se encontraron los datos">
+            <div class="card-body">
+              <h3 class="card-text">No hay datos para mostrar :(</h3>
+            </div>
+          </div>
+        </main>
+        {% endif %}
+      {% endif %}
+            
+    </main>
+{% endblock content %}

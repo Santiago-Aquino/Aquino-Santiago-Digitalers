@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="icon" href="{% static 'vapp/icono2.jpg' %}">
+    <link rel="stylesheet" href="{% static 'vapp/styles.css' %}">
+    <title>
+    {% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <header> 
+        <nav class="navbar navbar-expand-lg bg-transparent">
+            <div class="container-fluid">
+              <img src="{% static 'vapp/icono2.jpg' %}" class="icono" alt="Imagen del icono de la pagina">
+              <a class="navbar-brand text-white" href="{% url 'home' %}">ViuVehicle</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active text-white" aria-current="page" href="{% url 'car-list' %}">Automóviles</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'motorcycle-list' %}">Motocicletas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'company-list' %}">Compañías</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'comment-list' %}">Comentarios</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'about-me' %}">Sobre mi</a>
+                  </li>    
+                </ul>
+                {% if request.user.is_authenticated %}
+                <div class="d-flex me-4">
+                  <li class="nav-item me-3">
+                    {% if request.user.image %}
+                    <a class="nav-link text-white me-2" href="http://localhost:8000/user-update/{{request.user.id}}"><img src="http://localhost:8000/media/{{request.user.image}}" class="perfil" alt="Imagen del perfil del usuario"></a>
+                    {% else %}
+                    <a class="nav-link text-white me-2" href="http://localhost:8000/user-update/{{request.user.id}}"><img src="{% static 'user/perfil.png' %}" class="perfil" alt="Imagen del perfil del usuario"></a>
+                    {% endif %}
+                  </li>
+                  <li class="nav-item me-3">
+                    <a class="nav-link text-white" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
+                  </li>
+                  {% else %}
+                  <li class="nav-item me-3">
+                    <a class="nav-link text-white" href="{% url 'login' %}"><i class="fa-solid fa-right-to-bracket"></i></a>
+                  </li>
+                  {% endif %}
+                </div>
+              </div>
+              {% block nav %}
+              {% endblock nav %}
+            </div>
+          </nav>
+            
+    </header>
+
+    
+    {% block content %}
+        
+    {% endblock content %}
+    
+    <script src="https://kit.fontawesome.com/cad47029c3.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

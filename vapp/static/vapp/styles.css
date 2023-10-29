@@ -1,0 +1,23 @@
+body {
+    background-image: url('fondo3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.perfil {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.icono {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 100%;
+}
+
+.nav-item{
+    list-style: none;
+}

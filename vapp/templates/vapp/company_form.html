@@ -1,0 +1,29 @@
+{% extends 'vapp/base.html' %}
+{%load static%}
+
+{% block title %}
+    Crear Compañía - ViuVehicle
+{% endblock title %}
+
+
+{% block content %}
+<main>
+    <h2 class="text-white mt-5 text-center">Crear Compañía</h2>
+    <div class="contain-fluid">
+        <form class="row g-3 m-5" enctype='multipart/form-data' method="POST">
+            {% csrf_token %}
+            <div class="col-11">
+                <label for="id_name" class="form-label text-white">Nombre de la compañía</label>
+                <input type="text" id="id_name" name="name" maxlength="50" required="" class="form-control"">
+            </div>
+            <div class="col-11">
+                <label for="id_born" class="form-label text-white">Año</label>
+                <input type="number" id="id_born" name="born" required="" class="form-control"">
+            </div>
+            <div class="col-12">
+              <input type="submit" class="btn btn-success" value="Crear">
+            </div>
+          </form>
+    </div>
+</main>
+{% endblock content %}
